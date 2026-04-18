@@ -1,3 +1,5 @@
+const { BEGINNER_LABEL, INTERMEDIATE_LABEL, ADVANCED_LABEL } = require('./shared/labels.js');
+
 const SUPPORTED_GFI_REPOS = [
   'hiero-sdk-cpp',
   'hiero-sdk-swift',
@@ -58,10 +60,10 @@ module.exports = async ({ github, context, core }) => {
 
     // Determine issue difficulty level
     const difficultyLevels = {
-      beginner: labelSet.has('beginner'),
+      beginner: labelSet.has(BEGINNER_LABEL.toLowerCase()),
       goodFirstIssue: labelSet.has('good first issue'),
-      intermediate: labelSet.has('intermediate'),
-      advanced: labelSet.has('advanced'),
+      intermediate: labelSet.has(INTERMEDIATE_LABEL.toLowerCase()),
+      advanced: labelSet.has(ADVANCED_LABEL.toLowerCase()),
     };
 
     // Skip if intermediate or advanced
@@ -80,7 +82,7 @@ module.exports = async ({ github, context, core }) => {
     let recommendedLabel = null;
     let isFallback = false;
 
-    recommendedIssues = await searchIssues(github, core, repoOwner, repoName, 'beginner');
+    recommendedIssues = await searchIssues(github, core, repoOwner, repoName, BEGINNER_LABEL);
     recommendedLabel = 'Beginner';
 
     if (recommendedIssues.length === 0) {

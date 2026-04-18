@@ -26,12 +26,12 @@ jobs:
     concurrency:
       group: coderabbit-plan-${{ github.event.issue.number }}
       cancel-in-progress: false
-    # Only run when the newly added label is beginner, intermediate, or advanced (case-insensitive)
+    # Only run when the newly added label is a difficulty label (skill: beginner/intermediate/advanced)
     if: >
       github.event_name == 'workflow_dispatch' ||
       (github.event.action == 'labeled' &&
       github.event.issue.state == 'open' &&
-      contains(fromJson('["beginner","intermediate","advanced","Beginner","Intermediate","Advanced"]'), github.event.label.name))
+      contains(fromJson('["skill: beginner","skill: intermediate","skill: advanced"]'), github.event.label.name))
 
     steps:
       - name: Harden the runner
