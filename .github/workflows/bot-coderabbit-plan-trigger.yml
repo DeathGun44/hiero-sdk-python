@@ -1,6 +1,5 @@
-# This workflow automatically triggers CodeRabbit's plan feature for intermediate and advanced issues.
-# Fix for #1427: Only triggers when a beginner/intermediate/advanced label is specifically added,
-# preventing duplicate runs when other labels are added to the same issue.
+# Triggers CodeRabbit's plan feature when a difficulty label is added to an issue.
+# Only fires for skill: beginner/intermediate/advanced labels, preventing duplicate runs.
 name: CodeRabbit Plan Trigger
 on:
   issues:
